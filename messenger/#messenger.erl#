@@ -29,7 +29,7 @@ server_logon(From, Name, User_List) ->
 	    From ! {messenger, stop, user_exists_at_other_node},
 	    User_List;
 	false ->
-From ! {messenger, logged_on},
+	    From ! {messenger, logged_on},
 	    [{From, Name} | User_List]
 	end.
 
