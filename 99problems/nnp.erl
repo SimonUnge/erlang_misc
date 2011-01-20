@@ -63,3 +63,11 @@ compress([H,H|T]) ->
     compress([H|T]);
 compress([H|T]) ->
     [H] ++ compress(T).
+
+%%P09
+pack([]) ->
+    [];
+pack([H,H|T]) ->
+    [[H,H] ++ [pack(T)]];
+pack([H|T]) ->
+    [H] ++ pack(T).
