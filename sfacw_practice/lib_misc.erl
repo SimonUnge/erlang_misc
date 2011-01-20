@@ -1,5 +1,5 @@
 -module(lib_misc).
--export([odds_and_evens/1, odds_and_evens_acc/1, sqrt/1]).
+-export([on_exit/2, odds_and_evens/1, odds_and_evens_acc/1, sqrt/1]).
 
 odds_and_evens(L) ->
     Odds  = [X || X <- L, (X rem 2) =:= 1],
@@ -21,3 +21,13 @@ sqrt(X) when X < 0 ->
     erlang:error({squareRootNegativeArgument, X});
 sqrt(X) ->
     math:sqrt(X).
+
+on_exit(Pid, Fun) ->
+    spawn(fun() -> 
+		  process_flag(trap_exit, true),
+		  link(Pid),
+		  receive
+		      {'EXIT', Pid, Why} ->
+			  Fun(Why)
+		  end
+	  end).
