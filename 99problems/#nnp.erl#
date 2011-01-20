@@ -63,3 +63,5 @@ compress([H,H|T]) ->
     compress([H|T]);
 compress([H|T]) ->
     [H] ++ compress(T).
+
+%%P09
