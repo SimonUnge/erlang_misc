@@ -15,3 +15,4 @@ filter([H|T], I) ->
 
 filter1(List, I) ->
     [X|| X <- List, X =< I].
+
